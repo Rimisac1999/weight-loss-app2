@@ -7,13 +7,15 @@ import Footer from '@/components/Footer'
 
 export default function Home() {
   return (
-    <main className="min-h-screen pt-24">
+    <>
       <Header />
-      <Hero />
-      <Services />
-      <About />
-      <Contact />
-      <Footer />
-    </main>
+      <main className="min-h-screen pt-24 sm:pt-28">
+        <Hero />
+        <Services />
+        <About />
+        <Contact />
+        <Footer />
+      </main>
+    </>
   )
 } 

@@ -3,13 +3,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { Bars3Icon, XMarkIcon, ChevronDownIcon } from '@heroicons/react/24/outline'
 
-const navigation = [
-  { name: 'Home', href: '#home' },
-  { name: 'Services', href: '#services' },
-  { name: 'About', href: '#about' },
-  { name: 'Contact', href: '#contact' },
-]
-
 const tools = [
   { name: 'Memorizer', href: '/tools/memorizer' },
   { name: 'Tool 2', href: '/tool2' },
@@ -17,7 +10,7 @@ const tools = [
   { name: 'Tool 4', href: '/tool4' },
 ]
 
-export default function Header() {
+export default function ToolsHeader() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [toolsDropdownOpen, setToolsDropdownOpen] = useState(false)
   const [toolsDropdownVisible, setToolsDropdownVisible] = useState(false)
@@ -63,7 +56,7 @@ export default function Header() {
     <header className="fixed inset-x-0 top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200">
       <nav className="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
         <div className="flex lg:flex-1">
-          <a href="#home" className="-m-1.5 p-1.5">
+          <a href="/" className="-m-1.5 p-1.5">
             <span className="text-2xl font-bold text-gradient">Bonneval Solutions</span>
           </a>
         </div>
@@ -78,15 +71,9 @@ export default function Header() {
           </button>
         </div>
         <div className="hidden lg:flex lg:gap-x-12">
-          {navigation.map((item) => (
-            <a
-              key={item.name}
-              href={item.href}
-              className="text-sm font-semibold leading-6 text-gray-900 hover:text-primary-600 transition-colors duration-200"
-            >
-              {item.name}
-            </a>
-          ))}
+          <div className="flex items-center">
+            <span className="text-3xl font-bold text-gradient italic">Tools</span>
+          </div>
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end items-center gap-4">
           <a
@@ -148,7 +135,7 @@ export default function Header() {
           <div className="fixed inset-0 z-50" />
           <div className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
             <div className="flex items-center justify-between">
-              <a href="#home" className="-m-1.5 p-1.5">
+              <a href="/" className="-m-1.5 p-1.5">
                 <span className="text-xl font-bold text-gradient">Bonneval Solutions</span>
               </a>
               <button
@@ -163,16 +150,9 @@ export default function Header() {
             <div className="mt-6 flow-root">
               <div className="-my-6 divide-y divide-gray-500/10">
                 <div className="space-y-2 py-6">
-                  {navigation.map((item) => (
-                    <a
-                      key={item.name}
-                      href={item.href}
-                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      {item.name}
-                    </a>
-                  ))}
+                  <div className="px-3 py-2">
+                    <span className="text-2xl font-bold text-gradient italic">Tools</span>
+                  </div>
                 </div>
                 <div className="py-6 flex flex-col gap-2">
                   <a
@@ -226,4 +206,4 @@ export default function Header() {
       )}
     </header>
   )
-} 
+}

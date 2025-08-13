@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import Script from 'next/script'
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -25,6 +24,10 @@ export const metadata: Metadata = {
   },
 }
 
+// Client-only Voiceflow widget wrapper
+import dynamic from 'next/dynamic'
+const VoiceflowWidget = dynamic(() => import('@/components/VoiceflowWidget'), { ssr: false })
+
 export default function RootLayout({
   children,
 }: {
@@ -34,26 +37,7 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth">
       <body className={inter.className}>
         {children}
-        <Script id="voiceflow-widget" strategy="afterInteractive">
-          {`
-            (function(d, t) {
-                var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
-                v.onload = function() {
-                  window.voiceflow.chat.load({
-                    verify: { projectID: '6856a89623e97962edade3cd' },
-                    url: 'https://general-runtime.voiceflow.com',
-                    versionID: 'production',
-                    voice: {
-                      url: "https://runtime-api.voiceflow.com"
-                    }
-                  });
-                }
-                v.src = "https://cdn.voiceflow.com/widget-next/bundle.mjs";
-                v.type = "text/javascript";
-                s.parentNode.insertBefore(v, s);
-            })(document, 'script');
-          `}
-        </Script>
+        <VoiceflowWidget />
       </body>
     </html>
   )

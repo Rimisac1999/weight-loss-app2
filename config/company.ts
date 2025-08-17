@@ -1,7 +1,7 @@
 export const companyConfig = {
   // Basic Company Information
-  name: 'Bonneval Solutions',
-  fullName: 'Bonneval Solutions SASU',
+  name: 'Preview Bonneval Solutions',
+  fullName: 'Preview Bonneval Solutions SASU',
   legalForm: 'SASU (Société par Actions Simplifiée Unipersonnelle)',
   founded: '2024',
   industry: 'AI Automation & Process Optimization Consultancy',
@@ -63,7 +63,7 @@ export const companyConfig = {
   
   // Legal & Compliance
   legal: {
-    copyright: '© 2024 Bonneval Solutions. All rights reserved.',
+    copyright: '© 2024 Preview Bonneval Solutions. All rights reserved.',
     privacyPolicy: '/privacy',
     termsOfService: '/terms',
     cookiePolicy: '/cookies'
@@ -74,7 +74,7 @@ export const companyConfig = {
     tagline: 'Transform Your Business with AI Automation',
     description: 'Expert AI automation and process optimization consultancy for SMEs and corporate departments. Specializing in workflow automation, AI agents, and custom digital solutions.',
     mission: 'To democratize AI automation for businesses of all sizes, making complex processes simple and efficient.',
-    vision: 'Position Bonneval Solutions as a trusted boutique AI integration partner.'
+    vision: 'Position Preview Bonneval Solutions as a trusted boutique AI integration partner.'
   }
 }
 

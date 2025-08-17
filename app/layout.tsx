@@ -5,13 +5,13 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Bonneval Solutions - AI Automation & Process Optimization',
+  title: 'Preview Bonneval Solutions - AI Automation & Process Optimization',
   description: 'Expert AI automation and process optimization consultancy for SMEs and corporate departments. Specializing in workflow automation, AI agents, and custom digital solutions.',
   keywords: 'AI automation, process optimization, workflow automation, AI agents, digital transformation, logistics automation, engineering automation',
-  authors: [{ name: 'Bonneval Solutions' }],
+  authors: [{ name: 'Preview Bonneval Solutions' }],
   metadataBase: new URL('https://bonnevalsolutions.com'),
   openGraph: {
-    title: 'Bonneval Solutions - AI Automation & Process Optimization',
+    title: 'Preview Bonneval Solutions - AI Automation & Process Optimization',
     description: 'Expert AI automation and process optimization consultancy for SMEs and corporate departments.',
     type: 'website',
     locale: 'en_US',
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Bonneval Solutions - AI Automation & Process Optimization',
+    title: 'Preview Bonneval Solutions - AI Automation & Process Optimization',
     description: 'Expert AI automation and process optimization consultancy for SMEs and corporate departments.',
   },
 }

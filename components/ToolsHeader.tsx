@@ -129,32 +129,42 @@ export default function ToolsHeader() {
         </div>
       </nav>
       
-      {/* Mobile menu */}
+      {/* Mobile menu - Fixed positioning and full screen coverage */}
       {mobileMenuOpen && (
         <div className="lg:hidden">
-          <div className="fixed inset-0 z-50" />
-          <div className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
-            <div className="flex items-center justify-between">
-              <a href="/" className="-m-1.5 p-1.5">
-                <span className="text-xl font-bold text-gradient">Bonneval Solutions</span>
-              </a>
-              <button
-                type="button"
-                className="-m-2.5 rounded-md p-2.5 text-gray-700"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                <span className="sr-only">Close menu</span>
-                <XMarkIcon className="h-6 w-6" aria-hidden="true" />
-              </button>
-            </div>
-            <div className="mt-6 flow-root">
-              <div className="-my-6 divide-y divide-gray-500/10">
-                <div className="space-y-2 py-6">
-                  <div className="px-3 py-2">
-                    <span className="text-2xl font-bold text-gradient italic">Tools</span>
-                  </div>
+          {/* Backdrop */}
+          <div 
+            className="fixed inset-0 z-40 bg-black/20 backdrop-blur-sm" 
+            onClick={() => setMobileMenuOpen(false)} 
+          />
+          
+          {/* Mobile menu panel - Full height, proper positioning */}
+          <div className="fixed inset-0 z-50 flex justify-end">
+            <div className="w-full max-w-sm h-full bg-white shadow-2xl flex flex-col">
+              {/* Header with close button */}
+              <div className="flex items-center justify-between px-6 py-6 border-b border-gray-200">
+                <a href="/" className="-m-1.5 p-1.5">
+                  <span className="text-xl font-bold text-gradient">Bonneval Solutions</span>
+                </a>
+                <button
+                  type="button"
+                  className="-m-2.5 rounded-md p-2.5 text-gray-700 hover:bg-gray-100 transition-colors"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  <span className="sr-only">Close menu</span>
+                  <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+                </button>
+              </div>
+              
+              {/* Scrollable content area */}
+              <div className="flex-1 overflow-y-auto px-6 py-6">
+                {/* Tools title */}
+                <div className="mb-6">
+                  <span className="text-2xl font-bold text-gradient italic">Tools</span>
                 </div>
-                <div className="py-6 flex flex-col gap-2">
+                
+                {/* External links */}
+                <div className="space-y-3">
                   <a
                     href="https://intranet.bonnevalsolutions.com"
                     className="btn-secondary w-full text-center"
@@ -173,31 +183,31 @@ export default function ToolsHeader() {
                   >
                     Client
                   </a>
-                  
-                  {/* Mobile Tools Section */}
-                  <div className="mt-4">
-                    <button
-                      onClick={toggleMobileTools}
-                      className="w-full text-left px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50 rounded-lg flex items-center justify-between"
-                    >
-                      <span>Tools</span>
-                      <ChevronDownIcon className={`w-4 h-4 transition-transform ${mobileToolsOpen ? 'rotate-180' : ''}`} />
-                    </button>
-                    {mobileToolsOpen && (
-                      <div className="mt-2 space-y-1">
-                        {tools.map((tool) => (
-                          <a
-                            key={tool.name}
-                            href={tool.href}
-                            className="block px-6 py-2 text-base text-gray-600 hover:bg-gray-50 rounded-lg"
-                            onClick={() => setMobileMenuOpen(false)}
-                          >
-                            {tool.name}
-                          </a>
-                        ))}
-                      </div>
-                    )}
-                  </div>
+                </div>
+                
+                {/* Mobile Tools Section */}
+                <div className="mt-8">
+                  <button
+                    onClick={toggleMobileTools}
+                    className="w-full text-left px-3 py-3 text-base font-semibold text-gray-900 hover:bg-gray-50 rounded-lg flex items-center justify-between transition-colors"
+                  >
+                    <span>Available Tools</span>
+                    <ChevronDownIcon className={`w-4 h-4 transition-transform duration-200 ${mobileToolsOpen ? 'rotate-180' : ''}`} />
+                  </button>
+                  {mobileToolsOpen && (
+                    <div className="mt-2 space-y-1 pl-4">
+                      {tools.map((tool) => (
+                        <a
+                          key={tool.name}
+                          href={tool.href}
+                          className="block px-3 py-2 text-base text-gray-600 hover:bg-gray-50 rounded-lg transition-colors"
+                          onClick={() => setMobileMenuOpen(false)}
+                        >
+                          {tool.name}
+                        </a>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

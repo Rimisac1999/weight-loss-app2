@@ -129,83 +129,71 @@ export default function ToolsHeader() {
         <div className="lg:hidden">
           {/* Backdrop */}
           <div 
-            className="fixed inset-0 z-[9998] bg-black/20 backdrop-blur-sm" 
+            className="fixed inset-0 z-[9998] bg-black/50 backdrop-blur-sm" 
             onClick={() => setMobileMenuOpen(false)} 
           />
           
-          {/* Mobile menu panel */}
-          <div className="fixed inset-0 z-[9999] flex justify-end">
-            <div className="w-full max-w-sm h-full bg-white shadow-2xl flex flex-col border-l border-gray-200">
-              {/* Mobile menu header */}
-              <div className="flex items-center justify-between p-6 border-b border-gray-200">
-                <span className="text-lg font-semibold text-gray-900">Menu</span>
-                <button
-                  type="button"
-                  className="-m-2.5 rounded-md p-2.5 text-gray-700 hover:bg-gray-100 transition-colors"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  <span className="sr-only">Close menu</span>
-                  <XMarkIcon className="h-6 w-6" aria-hidden="true" />
-                </button>
-              </div>
-              
-              {/* Mobile navigation */}
-              <div className="flex-1 px-6 py-4">
-                <div className="space-y-4">
-                  <a
-                    href="/"
-                    className="block text-base font-medium text-gray-900 hover:text-primary-600 transition-colors"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    Home
-                  </a>
+          {/* Mobile menu panel - Full screen overlay */}
+          <div className="fixed inset-0 z-[9999] bg-white">
+            {/* Mobile menu header */}
+            <div className="flex items-center justify-between p-6 border-b border-gray-200 bg-white">
+              <span className="text-xl font-semibold text-gray-900">Tools Menu</span>
+              <button
+                type="button"
+                className="-m-2.5 rounded-md p-2.5 text-gray-700 hover:bg-gray-100 transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                <span className="sr-only">Close menu</span>
+                <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+              </button>
+            </div>
+            
+            {/* Mobile navigation - Full height scrollable content */}
+            <div className="flex-1 px-6 py-8 overflow-y-auto">
+              <div className="space-y-6">
+                {/* Tools section */}
+                <div>
+                  <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">Tools</h3>
+                  <div className="space-y-3">
+                    {tools.map((tool) => (
+                      <a
+                        key={tool.name}
+                        href={tool.href}
+                        className="block text-lg font-medium text-gray-900 hover:text-primary-600 transition-colors py-2"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        {tool.name}
+                      </a>
+                    ))}
+                  </div>
                 </div>
                 
-                {/* Mobile tools section */}
-                <div className="mt-8 pt-8 border-t border-gray-200">
-                  <button
-                    onClick={handleMobileToolsToggle}
-                    className="flex items-center justify-between w-full text-base font-medium text-gray-900 hover:text-primary-600 transition-colors"
-                  >
-                    Tools
-                    <ChevronDownIcon 
-                      className={`w-4 h-4 transition-transform ${mobileToolsOpen ? 'rotate-180' : ''}`} 
-                    />
-                  </button>
-                  
-                  {mobileToolsOpen && (
-                    <div className="mt-4 ml-4 space-y-3">
-                      {tools.map((tool) => (
-                        <a
-                          key={tool.name}
-                          href={tool.href}
-                          className="block text-sm text-gray-600 hover:text-primary-600 transition-colors"
-                          onClick={() => setMobileMenuOpen(false)}
-                        >
-                          {tool.name}
-                        </a>
-                      ))}
-                    </div>
-                  )}
-                </div>
-                
-                {/* Mobile external links */}
-                <div className="mt-8 pt-8 border-t border-gray-200 space-y-4">
+                {/* External links */}
+                <div className="pt-6 border-t border-gray-200 space-y-3">
                   <a
                     href="https://intranet.bonnevalsolutions.com"
-                    className="block text-base font-medium text-gray-900 hover:text-primary-600 transition-colors"
+                    className="block text-lg font-medium text-gray-900 hover:text-primary-600 transition-colors py-2"
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => setMobileMenuOpen(false)}
                   >
                     Intranet
                   </a>
                   <a
                     href="https://client.bonnevalsolutions.com"
-                    className="block text-base font-medium text-gray-900 hover:text-primary-600 transition-colors"
+                    className="block text-lg font-medium text-gray-900 hover:text-primary-600 transition-colors py-2"
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => setMobileMenuOpen(false)}
                   >
-                    Client
+                    Client Portal
+                  </a>
+                  <a
+                    href="/"
+                    className="block text-lg font-medium text-gray-900 hover:text-primary-600 transition-colors py-2"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Main Site
                   </a>
                 </div>
               </div>

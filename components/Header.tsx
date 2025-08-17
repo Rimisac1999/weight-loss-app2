@@ -23,7 +23,6 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [toolsDropdownOpen, setToolsDropdownOpen] = useState(false)
   const [toolsDropdownVisible, setToolsDropdownVisible] = useState(false)
-  const [mobileToolsOpen, setMobileToolsOpen] = useState(false)
   const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null)
 
   const handleMouseEnter = () => {
@@ -45,9 +44,20 @@ export default function Header() {
     setMobileMenuOpen(!mobileMenuOpen)
   }
 
-  const handleMobileToolsToggle = () => {
-    setMobileToolsOpen(!mobileToolsOpen)
-  }
+  // Add vanilla JavaScript event listener as a fallback
+  useEffect(() => {
+    const mobileMenuButton = document.getElementById('mobile-menu-button')
+    if (mobileMenuButton) {
+      const handleClick = () => {
+        setMobileMenuOpen(!mobileMenuOpen)
+      }
+      mobileMenuButton.addEventListener('click', handleClick)
+      
+      return () => {
+        mobileMenuButton.removeEventListener('click', handleClick)
+      }
+    }
+  }, [mobileMenuOpen])
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200">
@@ -63,7 +73,9 @@ export default function Header() {
           <button
             type="button"
             className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700 hover:bg-gray-100 transition-colors"
-            onClick={handleMobileMenuToggle}
+            id="mobile-menu-button"
+            data-testid="mobile-menu-button"
+            data-state={mobileMenuOpen}
           >
             <span className="sr-only">Open main menu</span>
             <Bars3Icon className="h-6 w-6" aria-hidden="true" />
@@ -178,32 +190,21 @@ export default function Header() {
                   ))}
                 </div>
                 
-                {/* Mobile tools section */}
+                {/* Mobile tools section - simplified flat structure */}
                 <div className="mt-8 pt-8 border-t border-gray-200">
-                  <button
-                    onClick={handleMobileToolsToggle}
-                    className="flex items-center justify-between w-full text-base font-medium text-gray-900 hover:text-primary-600 transition-colors"
-                  >
-                    Tools
-                    <ChevronDownIcon 
-                      className={`w-4 h-4 transition-transform ${mobileToolsOpen ? 'rotate-180' : ''}`} 
-                    />
-                  </button>
-                  
-                  {mobileToolsOpen && (
-                    <div className="mt-4 ml-4 space-y-3">
-                      {tools.map((tool) => (
-                        <a
-                          key={tool.name}
-                          href={tool.href}
-                          className="block text-sm text-gray-600 hover:text-primary-600 transition-colors"
-                          onClick={() => setMobileMenuOpen(false)}
-                        >
-                          {tool.name}
-                        </a>
-                      ))}
-                    </div>
-                  )}
+                  <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">Tools</h3>
+                  <div className="space-y-3">
+                    {tools.map((tool) => (
+                      <a
+                        key={tool.name}
+                        href={tool.href}
+                        className="block text-base font-medium text-gray-900 hover:text-primary-600 transition-colors"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        {tool.name}
+                      </a>
+                    ))}
+                  </div>
                 </div>
                 
                 {/* Mobile external links */}

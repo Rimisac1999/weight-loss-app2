@@ -1,17 +1,18 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import '../globals.css'
+import { getCompanyInfo } from '@/config/company'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Tools - Preview Bonneval Solutions',
+  title: `Tools - ${getCompanyInfo.name()}`,
   description: 'Professional tools and utilities for business automation and process optimization.',
   keywords: 'business tools, automation tools, process optimization, workflow tools',
-  authors: [{ name: 'Preview Bonneval Solutions' }],
+  authors: [{ name: getCompanyInfo.name() }],
   metadataBase: new URL('https://tools.bonnevalsolutions.com'),
   openGraph: {
-    title: 'Tools - Preview Bonneval Solutions',
+    title: `Tools - ${getCompanyInfo.name()}`,
     description: 'Professional tools and utilities for business automation and process optimization.',
     type: 'website',
     locale: 'en_US',
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Tools - Preview Bonneval Solutions',
+    title: `Tools - ${getCompanyInfo.name()}`,
     description: 'Professional tools and utilities for business automation and process optimization.',
   },
 }

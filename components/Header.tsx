@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react'
 import { Bars3Icon, XMarkIcon, ChevronDownIcon } from '@heroicons/react/24/outline'
+import { getCompanyInfo } from '@/config/company'
 
 const navigation = [
   { name: 'Home', href: '#home' },
@@ -64,7 +65,7 @@ export default function Header() {
       <nav className="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
         <div className="flex lg:flex-1">
           <a href="#home" className="-m-1.5 p-1.5">
-            <span className="text-2xl font-bold text-gradient">Bonneval Solutions</span>
+            <span className="text-2xl font-bold text-gradient">{getCompanyInfo.name()}</span>
           </a>
         </div>
         <div className="flex lg:hidden">
@@ -157,7 +158,7 @@ export default function Header() {
               {/* Header with close button */}
               <div className="flex items-center justify-between px-6 py-6 border-b border-gray-200">
                 <a href="#home" className="-m-1.5 p-1.5">
-                  <span className="text-xl font-bold text-gradient">Bonneval Solutions</span>
+                  <span className="text-xl font-bold text-gradient">{getCompanyInfo.name()}</span>
                 </a>
                 <button
                   type="button"

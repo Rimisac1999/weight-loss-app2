@@ -2,9 +2,10 @@
 
 import { useState, useRef, useEffect } from 'react'
 import { Bars3Icon, XMarkIcon, ChevronDownIcon } from '@heroicons/react/24/outline'
+import { getCompanyInfo } from '@/config/company'
 
 const tools = [
-  { name: 'Memorizer', href: '/tools/memorizer' },
+  { name: 'Memorizer', href: '/tools-domain/memorizer' },
   { name: 'Tool 2', href: '/tool2' },
   { name: 'Tool 3', href: '/tool3' },
   { name: 'Tool 4', href: '/tool4' },
@@ -56,8 +57,8 @@ export default function ToolsHeader() {
     <header className="fixed inset-x-0 top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200">
       <nav className="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
         <div className="flex lg:flex-1">
-          <a href="/" className="-m-1.5 p-1.5">
-            <span className="text-2xl font-bold text-gradient">Bonneval Solutions</span>
+          <a href="/tools-domain" className="-m-1.5 p-1.5">
+            <span className="text-2xl font-bold text-gradient">{getCompanyInfo.name()}</span>
           </a>
         </div>
         <div className="flex lg:hidden">
@@ -143,8 +144,8 @@ export default function ToolsHeader() {
             <div className="w-full max-w-sm h-full bg-white shadow-2xl flex flex-col">
               {/* Header with close button */}
               <div className="flex items-center justify-between px-6 py-6 border-b border-gray-200">
-                <a href="/" className="-m-1.5 p-1.5">
-                  <span className="text-xl font-bold text-gradient">Bonneval Solutions</span>
+                <a href="/tools-domain" className="-m-1.5 p-1.5">
+                  <span className="text-xl font-bold text-gradient">{getCompanyInfo.name()}</span>
                 </a>
                 <button
                   type="button"

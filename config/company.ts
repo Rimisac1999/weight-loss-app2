@@ -1,5 +1,6 @@
 // Environment detection
-const isMainBranch = process.env.VERCEL_GIT_COMMIT_REF === 'main'
+const commitRef = process.env.VERCEL_GIT_COMMIT_REF
+const isMainBranch = commitRef ? commitRef === 'main' : true
 const isPreview = !isMainBranch
 
 // Domain routing based on environment

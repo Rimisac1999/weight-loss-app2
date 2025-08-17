@@ -5,7 +5,7 @@ import { Bars3Icon, XMarkIcon, ChevronDownIcon } from '@heroicons/react/24/outli
 import { getCompanyInfo } from '@/config/company'
 
 const tools = [
-  { name: 'Memorizer', href: '/tools-domain/memorizer' },
+  { name: 'Memorizer', href: '/memorizer' },
   { name: 'Tool 2', href: '/tool2' },
   { name: 'Tool 3', href: '/tool3' },
   { name: 'Tool 4', href: '/tool4' },

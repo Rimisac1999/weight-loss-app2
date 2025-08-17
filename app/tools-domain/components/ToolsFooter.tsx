@@ -47,12 +47,12 @@ export default function ToolsFooter() {
             </h3>
             <ul className="space-y-3">
               <li>
-                <a href="/tools-domain" className="text-gray-600 hover:text-gray-900 transition-colors">
+                <a href="/" className="text-gray-600 hover:text-gray-900 transition-colors">
                   Tools Home
                 </a>
               </li>
               <li>
-                <a href="/tools-domain/memorizer" className="text-gray-600 hover:text-gray-900 transition-colors">
+                <a href="/memorizer" className="text-gray-600 hover:text-gray-900 transition-colors">
                   Memorizer Tool
                 </a>
               </li>

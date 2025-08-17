@@ -27,6 +27,27 @@ const nextConfig = {
           },
         ],
       },
+      // Ensure main site routes resolve for bonnevalsolutions.com and www
+      {
+        source: '/:path*',
+        destination: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'bonnevalsolutions.com',
+          },
+        ],
+      },
+      {
+        source: '/:path*',
+        destination: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'www.bonnevalsolutions.com',
+          },
+        ],
+      },
       // Rewrite preview.bonnevalsolutions.com to main site (with preview branding)
       {
         source: '/:path*',

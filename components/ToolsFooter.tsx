@@ -1,4 +1,4 @@
-import { companyConfig, contact, legal } from '@/config/company'
+import { getCompanyInfo } from '@/config/company'
 
 export default function ToolsFooter() {
   return (
@@ -9,10 +9,10 @@ export default function ToolsFooter() {
             {/* Company Info */}
             <div className="lg:col-span-2">
               <div className="mb-6">
-                <span className="text-2xl font-bold text-gradient">{companyConfig.name} <span className="italic">Tools</span></span>
+                <span className="text-2xl font-bold text-gradient">{getCompanyInfo.name()} <span className="italic">Tools</span></span>
               </div>
               <p className="text-gray-300 mb-6 leading-relaxed">
-                A subsection of {companyConfig.name} with Free Tools made for helping people in their day to day life.
+                A subsection of {getCompanyInfo.name()} with Free Tools made for helping people in their day to day life.
               </p>
             </div>
 
@@ -60,12 +60,12 @@ export default function ToolsFooter() {
                   </a>
                 </li>
                 <li>
-                  <a href={legal.privacyPolicy} className="text-gray-300 hover:text-white transition-colors text-sm">
+                  <a href="/privacy" className="text-gray-300 hover:text-white transition-colors text-sm">
                     Privacy Policy
                   </a>
                 </li>
                 <li>
-                  <a href={legal.termsOfService} className="text-gray-300 hover:text-white transition-colors text-sm">
+                  <a href="/terms" className="text-gray-300 hover:text-white transition-colors text-sm">
                     Terms of Service
                   </a>
                 </li>
@@ -78,17 +78,17 @@ export default function ToolsFooter() {
         <div className="border-t border-gray-800 py-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400 text-sm">
-              {legal.copyright}
+              {getCompanyInfo.copyright()}
             </p>
             <div className="flex items-center space-x-6 mt-4 md:mt-0">
               <a
-                href={legal.privacyPolicy}
+                href="/privacy"
                 className="text-gray-400 hover:text-white transition-colors text-sm"
               >
                 Privacy Policy
               </a>
               <a
-                href={legal.termsOfService}
+                href="/terms"
                 className="text-gray-400 hover:text-white transition-colors text-sm"
               >
                 Terms of Service

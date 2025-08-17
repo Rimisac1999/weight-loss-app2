@@ -59,6 +59,26 @@ export default function Header() {
     }
   }, [mobileMenuOpen])
 
+  // Disable body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden'
+      document.body.style.position = 'fixed'
+      document.body.style.width = '100%'
+    } else {
+      document.body.style.overflow = ''
+      document.body.style.position = ''
+      document.body.style.width = ''
+    }
+
+    // Cleanup function to restore scroll when component unmounts
+    return () => {
+      document.body.style.overflow = ''
+      document.body.style.position = ''
+      document.body.style.width = ''
+    }
+  }, [mobileMenuOpen])
+
   return (
     <header className="fixed inset-x-0 top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200">
       <nav className="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
@@ -160,9 +180,9 @@ export default function Header() {
           />
           
           {/* Mobile menu panel - Full screen overlay */}
-          <div className="fixed inset-0 z-[9999] bg-white">
+          <div className="fixed inset-0 z-[9999] bg-white flex flex-col">
             {/* Mobile menu header */}
-            <div className="flex items-center justify-between p-6 border-b border-gray-200 bg-white">
+            <div className="flex items-center justify-between p-6 border-b border-gray-200 bg-white flex-shrink-0">
               <span className="text-xl font-semibold text-gray-900">Menu</span>
               <button
                 type="button"
@@ -174,8 +194,8 @@ export default function Header() {
               </button>
             </div>
             
-            {/* Mobile navigation - Full height scrollable content */}
-            <div className="flex-1 px-6 py-8 overflow-y-auto">
+            {/* Mobile navigation - Scrollable content area */}
+            <div className="flex-1 overflow-y-auto px-6 py-8">
               <div className="space-y-6">
                 {/* Main navigation */}
                 <div>

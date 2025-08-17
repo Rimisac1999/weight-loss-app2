@@ -23,6 +23,16 @@
     },
     {
       "source": "/(.*)",
+      "destination": "/tools-domain/$1",
+      "has": [
+        {
+          "type": "host",
+          "value": "preview-tools.bonnevalsolutions.com"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)",
       "destination": "/$1",
       "has": [
         {

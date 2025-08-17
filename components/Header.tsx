@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from 'react'
 import { Bars3Icon, XMarkIcon, ChevronDownIcon } from '@heroicons/react/24/outline'
 import { getCompanyInfo } from '@/config/company'
+import { getToolUrl } from '@/utils/routing'
 
 const navigation = [
   { name: 'Home', href: '#home' },
@@ -12,10 +13,10 @@ const navigation = [
 ]
 
 const tools = [
-  { name: 'Memorizer', href: '/tools/memorizer' },
-  { name: 'Tool 2', href: '/tool2' },
-  { name: 'Tool 3', href: '/tool3' },
-  { name: 'Tool 4', href: '/tool4' },
+  { name: 'Memorizer', href: getToolUrl('/memorizer') },
+  { name: 'Tool 2', href: getToolUrl('/tool2') },
+  { name: 'Tool 3', href: getToolUrl('/tool3') },
+  { name: 'Tool 4', href: getToolUrl('/tool4') },
 ]
 
 export default function Header() {

@@ -5,7 +5,7 @@ const nextConfig = {
   // Handle subdomain routing
   async rewrites() {
     return [
-      // Rewrite tools.bonnevalsolutions.com to /tools-domain
+      // Rewrite tools.bonnevalsolutions.com to /tools-domain (production)
       {
         source: '/:path*',
         destination: '/tools-domain/:path*',
@@ -13,6 +13,17 @@ const nextConfig = {
           {
             type: 'host',
             value: 'tools.bonnevalsolutions.com',
+          },
+        ],
+      },
+      // Rewrite preview-tools.bonnevalsolutions.com to /tools-domain (preview)
+      {
+        source: '/:path*',
+        destination: '/tools-domain/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'preview-tools.bonnevalsolutions.com',
           },
         ],
       },

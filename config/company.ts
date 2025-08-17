@@ -1,7 +1,23 @@
 // Environment detection
-const isPreview = process.env.NODE_ENV === 'development' || 
-                  process.env.VERCEL_ENV === 'preview' ||
-                  process.env.NEXT_PUBLIC_ENVIRONMENT === 'preview'
+const isMainBranch = process.env.VERCEL_GIT_COMMIT_REF === 'main'
+const isPreview = !isMainBranch
+
+// Domain routing based on environment
+export const getDomainConfig = () => {
+  if (isMainBranch) {
+    return {
+      main: 'bonnevalsolutions.com',
+      tools: 'tools.bonnevalsolutions.com',
+      isProduction: true
+    }
+  } else {
+    return {
+      main: 'preview.bonnevalsolutions.com',
+      tools: 'preview-tools.bonnevalsolutions.com',
+      isProduction: false
+    }
+  }
+}
 
 export const companyConfig = {
   // Basic Company Information
@@ -63,7 +79,7 @@ export const companyConfig = {
   external: {
     intranet: 'https://intranet.bonnevalsolutions.com',
     client: 'https://client.bonnevalsolutions.com',
-    tools: 'https://tools.bonnevalsolutions.com'
+    tools: `https://${getDomainConfig().tools}`
   },
   
   // Legal & Compliance

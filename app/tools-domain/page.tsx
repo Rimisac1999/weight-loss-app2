@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import ToolsHeader from './components/ToolsHeader'
 import ToolsFooter from './components/ToolsFooter'
+import { getToolUrl } from '@/utils/routing'
 
 export default function ToolsHomePage() {
   return (
@@ -34,7 +35,7 @@ export default function ToolsHomePage() {
                 Advanced text memorization and learning tool with spaced repetition algorithms.
               </p>
               <Link 
-                href="/tools-domain/memorizer"
+                href={getToolUrl('/memorizer')}
                 className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
               >
                 Launch Tool

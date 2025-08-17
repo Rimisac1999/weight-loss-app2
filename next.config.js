@@ -16,6 +16,17 @@ const nextConfig = {
           },
         ],
       },
+      // Rewrite preview.bonnevalsolutions.com to main site (with preview branding)
+      {
+        source: '/:path*',
+        destination: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'preview.bonnevalsolutions.com',
+          },
+        ],
+      },
     ]
   },
   

@@ -1,7 +1,12 @@
+// Environment detection
+const isPreview = process.env.NODE_ENV === 'development' || 
+                  process.env.VERCEL_ENV === 'preview' ||
+                  process.env.NEXT_PUBLIC_ENVIRONMENT === 'preview'
+
 export const companyConfig = {
   // Basic Company Information
-  name: 'Preview Bonneval Solutions',
-  fullName: 'Preview Bonneval Solutions SASU',
+  name: isPreview ? 'Preview Bonneval Solutions' : 'Bonneval Solutions',
+  fullName: isPreview ? 'Preview Bonneval Solutions SASU' : 'Bonneval Solutions SASU',
   legalForm: 'SASU (Société par Actions Simplifiée Unipersonnelle)',
   founded: '2024',
   industry: 'AI Automation & Process Optimization Consultancy',
@@ -58,12 +63,12 @@ export const companyConfig = {
   external: {
     intranet: 'https://intranet.bonnevalsolutions.com',
     client: 'https://client.bonnevalsolutions.com',
-    tools: 'https://bonnevalsolutions.com/tools'
+    tools: 'https://tools.bonnevalsolutions.com'
   },
   
   // Legal & Compliance
   legal: {
-    copyright: '© 2024 Preview Bonneval Solutions. All rights reserved.',
+    copyright: isPreview ? '© 2024 Preview Bonneval Solutions. All rights reserved.' : '© 2024 Bonneval Solutions. All rights reserved.',
     privacyPolicy: '/privacy',
     termsOfService: '/terms',
     cookiePolicy: '/cookies'
@@ -74,7 +79,7 @@ export const companyConfig = {
     tagline: 'Transform Your Business with AI Automation',
     description: 'Expert AI automation and process optimization consultancy for SMEs and corporate departments. Specializing in workflow automation, AI agents, and custom digital solutions.',
     mission: 'To democratize AI automation for businesses of all sizes, making complex processes simple and efficient.',
-    vision: 'Position Preview Bonneval Solutions as a trusted boutique AI integration partner.'
+    vision: isPreview ? 'Position Preview Bonneval Solutions as a trusted boutique AI integration partner.' : 'Position Bonneval Solutions as a trusted boutique AI integration partner.'
   }
 }
 

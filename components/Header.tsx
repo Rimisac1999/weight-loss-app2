@@ -26,21 +26,6 @@ export default function Header() {
   const [mobileToolsOpen, setMobileToolsOpen] = useState(false)
   const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null)
 
-  // Close mobile tools when page is scrolled or clicked
-  useEffect(() => {
-    const handlePageInteraction = () => {
-      setMobileToolsOpen(false)
-    }
-
-    window.addEventListener('scroll', handlePageInteraction)
-    window.addEventListener('click', handlePageInteraction)
-    
-    return () => {
-      window.removeEventListener('scroll', handlePageInteraction)
-      window.removeEventListener('click', handlePageInteraction)
-    }
-  }, [])
-
   const handleMouseEnter = () => {
     if (dropdownTimeoutRef.current) {
       clearTimeout(dropdownTimeoutRef.current)
@@ -50,14 +35,17 @@ export default function Header() {
   }
 
   const handleMouseLeave = () => {
-    setToolsDropdownVisible(false)
     dropdownTimeoutRef.current = setTimeout(() => {
-      setToolsDropdownOpen(false)
-    }, 200)
+      setToolsDropdownVisible(false)
+      setTimeout(() => setToolsDropdownOpen(false), 200)
+    }, 100)
   }
 
-  const toggleMobileTools = (e: React.MouseEvent) => {
-    e.stopPropagation()
+  const handleMobileMenuToggle = () => {
+    setMobileMenuOpen(!mobileMenuOpen)
+  }
+
+  const handleMobileToolsToggle = () => {
     setMobileToolsOpen(!mobileToolsOpen)
   }
 
@@ -69,16 +57,20 @@ export default function Header() {
             <span className="text-2xl font-bold text-gradient">{getCompanyInfo.name()}</span>
           </a>
         </div>
+        
+        {/* Mobile menu button */}
         <div className="flex lg:hidden">
           <button
             type="button"
-            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
-            onClick={() => setMobileMenuOpen(true)}
+            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700 hover:bg-gray-100 transition-colors"
+            onClick={handleMobileMenuToggle}
           >
             <span className="sr-only">Open main menu</span>
             <Bars3Icon className="h-6 w-6" aria-hidden="true" />
           </button>
         </div>
+        
+        {/* Desktop navigation */}
         <div className="hidden lg:flex lg:gap-x-12">
           {navigation.map((item) => (
             <a
@@ -90,6 +82,8 @@ export default function Header() {
             </a>
           ))}
         </div>
+        
+        {/* Desktop right side */}
         <div className="hidden lg:flex lg:flex-1 lg:justify-end items-center gap-4">
           <a
             href="https://intranet.bonnevalsolutions.com"
@@ -144,23 +138,21 @@ export default function Header() {
         </div>
       </nav>
       
-      {/* Mobile menu - Fixed positioning and full screen coverage */}
+      {/* Mobile menu */}
       {mobileMenuOpen && (
         <div className="lg:hidden">
           {/* Backdrop */}
           <div 
-            className="fixed inset-0 z-40 bg-black/20 backdrop-blur-sm" 
+            className="fixed inset-0 z-[9998] bg-black/20 backdrop-blur-sm" 
             onClick={() => setMobileMenuOpen(false)} 
           />
           
-          {/* Mobile menu panel - Full height, proper positioning */}
-          <div className="fixed inset-0 z-50 flex justify-end">
-            <div className="w-full max-w-sm h-full bg-white shadow-2xl flex flex-col">
-              {/* Header with close button */}
-              <div className="flex items-center justify-between px-6 py-6 border-b border-gray-200">
-                <a href="#home" className="-m-1.5 p-1.5">
-                  <span className="text-xl font-bold text-gradient">{getCompanyInfo.name()}</span>
-                </a>
+          {/* Mobile menu panel */}
+          <div className="fixed inset-0 z-[9999] flex justify-end">
+            <div className="w-full max-w-sm h-full bg-white shadow-2xl flex flex-col border-l border-gray-200">
+              {/* Mobile menu header */}
+              <div className="flex items-center justify-between p-6 border-b border-gray-200">
+                <span className="text-lg font-semibold text-gray-900">Menu</span>
                 <button
                   type="button"
                   className="-m-2.5 rounded-md p-2.5 text-gray-700 hover:bg-gray-100 transition-colors"
@@ -171,15 +163,14 @@ export default function Header() {
                 </button>
               </div>
               
-              {/* Scrollable content area */}
-              <div className="flex-1 overflow-y-auto px-6 py-6">
-                {/* Main navigation */}
-                <div className="space-y-1">
+              {/* Mobile navigation */}
+              <div className="flex-1 px-6 py-4">
+                <div className="space-y-4">
                   {navigation.map((item) => (
                     <a
                       key={item.name}
                       href={item.href}
-                      className="block rounded-lg px-3 py-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50 transition-colors"
+                      className="block text-base font-medium text-gray-900 hover:text-primary-600 transition-colors"
                       onClick={() => setMobileMenuOpen(false)}
                     >
                       {item.name}
@@ -187,44 +178,25 @@ export default function Header() {
                   ))}
                 </div>
                 
-                {/* External links */}
-                <div className="mt-8 space-y-3">
-                  <a
-                    href="https://intranet.bonnevalsolutions.com"
-                    className="btn-secondary w-full text-center"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    Intranet
-                  </a>
-                  <a
-                    href="https://client.bonnevalsolutions.com"
-                    className="btn-secondary w-full text-center"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    Client
-                  </a>
-                </div>
-                
-                {/* Mobile Tools Section */}
-                <div className="mt-8">
+                {/* Mobile tools section */}
+                <div className="mt-8 pt-8 border-t border-gray-200">
                   <button
-                    onClick={toggleMobileTools}
-                    className="w-full text-left px-3 py-3 text-base font-semibold text-gray-900 hover:bg-gray-50 rounded-lg flex items-center justify-between transition-colors"
+                    onClick={handleMobileToolsToggle}
+                    className="flex items-center justify-between w-full text-base font-medium text-gray-900 hover:text-primary-600 transition-colors"
                   >
-                    <span>Tools</span>
-                    <ChevronDownIcon className={`w-4 h-4 transition-transform duration-200 ${mobileToolsOpen ? 'rotate-180' : ''}`} />
+                    Tools
+                    <ChevronDownIcon 
+                      className={`w-4 h-4 transition-transform ${mobileToolsOpen ? 'rotate-180' : ''}`} 
+                    />
                   </button>
+                  
                   {mobileToolsOpen && (
-                    <div className="mt-2 space-y-1 pl-4">
+                    <div className="mt-4 ml-4 space-y-3">
                       {tools.map((tool) => (
                         <a
                           key={tool.name}
                           href={tool.href}
-                          className="block px-3 py-2 text-base text-gray-600 hover:bg-gray-50 rounded-lg transition-colors"
+                          className="block text-sm text-gray-600 hover:text-primary-600 transition-colors"
                           onClick={() => setMobileMenuOpen(false)}
                         >
                           {tool.name}
@@ -232,6 +204,26 @@ export default function Header() {
                       ))}
                     </div>
                   )}
+                </div>
+                
+                {/* Mobile external links */}
+                <div className="mt-8 pt-8 border-t border-gray-200 space-y-4">
+                  <a
+                    href="https://intranet.bonnevalsolutions.com"
+                    className="block text-base font-medium text-gray-900 hover:text-primary-600 transition-colors"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Intranet
+                  </a>
+                  <a
+                    href="https://client.bonnevalsolutions.com"
+                    className="block text-base font-medium text-gray-900 hover:text-primary-600 transition-colors"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Client
+                  </a>
                 </div>
               </div>
             </div>

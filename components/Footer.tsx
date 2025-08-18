@@ -15,8 +15,8 @@ const navigation = {
   company: [
     { name: 'About Us', href: '#about' },
     { name: 'Contact', href: '#contact' },
-    { name: 'Privacy Policy', href: {legal.privacyPolicy} },
-    { name: 'Terms of Service', href: {legal.termsOfService} },
+    { name: 'Privacy Policy', href: legal.privacyPolicy },
+    { name: 'Terms of Service', href: legal.termsOfService },
   ],
   industries: [
     { name: 'Offshore Logistics', href: '#' },

@@ -8,6 +8,8 @@ import {
   MapPinIcon,
   ClockIcon
 } from '@heroicons/react/24/outline'
+import { getCompanyInfo } from '@/config/company
+
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -58,7 +60,7 @@ export default function Contact() {
     {
       icon: EnvelopeIcon,
       title: 'Email',
-      value: 'contact@bonnevalsolutions.com',
+      value: getCompanyInfo.ContactEmail(),
       href: 'mailto:contact@bonnevalsolutions.com'
     },
     {

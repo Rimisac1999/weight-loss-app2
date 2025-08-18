@@ -57,31 +57,31 @@ export default function Contact() {
   }
 
   const contactInfo = [
-    {
-      icon: EnvelopeIcon,
-      title: 'Email',
-      value: getCompanyInfo.ContactEmail(),
-      href: 'mailto:{$getCompanyInfo.ContactEmail()}'
-    },
-    {
-      icon: PhoneIcon,
-      title: 'Phone',
-      value: '+33 (0)1 XX XX XX XX',
-      href: 'tel:+331XXXXXXXXX'
-    },
-    {
-      icon: MapPinIcon,
-      title: 'Location',
-      value: 'France (Remote & On-site)',
-      href: null
-    },
-    {
-      icon: ClockIcon,
-      title: 'Business Hours',
-      value: 'Mon-Fri: 9:00 AM - 6:00 PM CET',
-      href: null
-    }
-  ]
+  {
+    icon: EnvelopeIcon,
+    title: 'Email',
+    value: getCompanyInfo.contactEmail(),                    // ✅ correct name + call
+    href: mailto:${getCompanyInfo.contactEmail()},         // ✅ proper template string
+  },
+  {
+    icon: PhoneIcon,
+    title: 'Phone',
+    value: getCompanyInfo.contactPhone(),
+    href: tel:${getCompanyInfo.contactPhone()},            // optionally strip spaces if needed
+  },
+  {
+    icon: MapPinIcon,
+    title: 'Location',
+    value: companyConfig.contact.location,                   // or add a getter if you prefer
+    href: null,
+  },
+  {
+    icon: ClockIcon,
+    title: 'Business Hours',
+    value: getCompanyInfo.businessHours(),
+    href: null,
+  },
+]
 
   return (
     <section id="contact" className="section-padding bg-white">

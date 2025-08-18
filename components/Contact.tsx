@@ -10,6 +10,9 @@ import {
 } from '@heroicons/react/24/outline'
 import { getCompanyInfo, companyConfig } from '@/config/company' 
 
+const phone = getCompanyInfo.contactPhone()
+const phoneDigits = phone.replace(/[^\d]/g, '') // strip spaces/()/- for URLs
+
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -63,12 +66,20 @@ export default function Contact() {
     value: getCompanyInfo.contactEmail(),                    // ✅ correct name + call
     href: `mailto:${getCompanyInfo.contactEmail()}`,         // ✅ proper template string
   },
-  {
+     {
     icon: PhoneIcon,
     title: 'Phone',
-    value: getCompanyInfo.contactPhone(),
-    href: `tel:${getCompanyInfo.contactPhone()}`,            // optionally strip spaces if needed
+    value: phone,
+    href: tel:${phoneDigits},
   },
+
+  {
+    icon: PhoneIcon, // you can swap this for a WhatsApp icon package if you add one
+    title: 'WhatsApp',
+    value: phone,
+    href: https://wa.me/${phoneDigits},  // ✅ WhatsApp link
+  },
+
   {
     icon: MapPinIcon,
     title: 'Location',

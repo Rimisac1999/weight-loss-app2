@@ -8,7 +8,7 @@ import {
   MapPinIcon,
   ClockIcon
 } from '@heroicons/react/24/outline'
-import { getCompanyInfo } from '@/config/company' 
+import { getCompanyInfo companyConfig } from '@/config/company' 
 
 
 export default function Contact() {
@@ -61,13 +61,13 @@ export default function Contact() {
     icon: EnvelopeIcon,
     title: 'Email',
     value: getCompanyInfo.contactEmail(),                    // ✅ correct name + call
-    href: mailto:${getCompanyInfo.contactEmail()},         // ✅ proper template string
+    href: 'mailto:${getCompanyInfo.contactEmail()}',         // ✅ proper template string
   },
   {
     icon: PhoneIcon,
     title: 'Phone',
     value: getCompanyInfo.contactPhone(),
-    href: tel:${getCompanyInfo.contactPhone()},            // optionally strip spaces if needed
+    href: 'tel:${getCompanyInfo.contactPhone()}',            // optionally strip spaces if needed
   },
   {
     icon: MapPinIcon,
@@ -79,7 +79,7 @@ export default function Contact() {
     icon: ClockIcon,
     title: 'Business Hours',
     value: getCompanyInfo.businessHours(),
-    href: null,
+    href: null, 
   },
 ]
 

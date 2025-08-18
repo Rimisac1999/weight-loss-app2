@@ -8,7 +8,7 @@ import {
   MapPinIcon,
   ClockIcon
 } from '@heroicons/react/24/outline'
-import { getCompanyInfo companyConfig } from '@/config/company' 
+import { getCompanyInfo, companyConfig } from '@/config/company' 
 
 
 export default function Contact() {

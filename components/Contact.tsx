@@ -66,20 +66,12 @@ export default function Contact() {
     value: getCompanyInfo.contactEmail(),                    // ✅ correct name + call
     href: `mailto:${getCompanyInfo.contactEmail()}`,         // ✅ proper template string
   },
-     {
+  {
     icon: PhoneIcon,
     title: 'Phone',
-    value: phone,
-    href: tel:${phoneDigits},
+    value: getCompanyInfo.contactPhone(),
+    href: `tel:${getCompanyInfo.contactPhone()}`,            // optionally strip spaces if needed
   },
-
-  {
-    icon: PhoneIcon, // you can swap this for a WhatsApp icon package if you add one
-    title: 'WhatsApp',
-    value: phone,
-    href: https://wa.me/${phoneDigits},  // ✅ WhatsApp link
-  },
-
   {
     icon: MapPinIcon,
     title: 'Location',

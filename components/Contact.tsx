@@ -61,7 +61,7 @@ export default function Contact() {
       icon: EnvelopeIcon,
       title: 'Email',
       value: getCompanyInfo.ContactEmail(),
-      href: 'mailto:$getCompanyInfo.ContactEmail()'
+      href: 'mailto:{$getCompanyInfo.ContactEmail()}'
     },
     {
       icon: PhoneIcon,

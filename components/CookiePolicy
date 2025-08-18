@@ -1,0 +1,68 @@
+// app/(legal)/cookies-privacy/page.tsx
+// A minimalist "no data, no cookies" policy page.
+// Copy this file into your Next.js app router structure.
+
+export const metadata = {
+  title: "Cookies & Privacy Policy",
+  description:
+    "We do not collect personal data, do not store any information about visitors, and we set no cookies.",
+  robots: { index: true, follow: true },
+};
+
+export default function CookiesPrivacyPage() {
+  const lastUpdated = "2025-08-18"; // Update as needed (YYYY-MM-DD)
+
+  return (
+    <main className="mx-auto max-w-3xl px-6 py-12 leading-relaxed text-zinc-900">
+      <header className="mb-8">
+        <h1 className="text-3xl font-semibold">Cookies &amp; Privacy Policy</h1>
+        <p className="mt-2 text-sm text-zinc-600">
+          Last updated: <time dateTime={lastUpdated}>{lastUpdated}</time>
+        </p>
+      </header>
+
+      <section className="space-y-4">
+        <p>
+          At <strong>[Your Company Name]</strong>, your privacy is simple:{" "}
+          <em>we do not collect data about you, we save nothing, and we set no cookies</em>.
+        </p>
+
+        <h2 className="text-xl font-semibold mt-8">In Short</h2>
+        <ul className="list-disc pl-6 space-y-2">
+          <li>No personal data is collected, processed, profiled, or sold.</li>
+          <li>No analytics, advertising, or tracking technologies are used.</li>
+          <li>No cookies are placed on your device (no session, no persistent, no third-party cookies).</li>
+          <li>No server-side user profiles, logs tied to individuals, or databases of visitor information.</li>
+        </ul>
+
+        <h2 className="text-xl font-semibold mt-8">Cookies</h2>
+        <p>
+          We do not use cookies. If you see any cookie prompts, they are not from us. Should our technical setup
+          change in the future, this page will be updated before any cookies are introduced.
+        </p>
+
+        <h2 className="text-xl font-semibold mt-8">Third-Party Services</h2>
+        <p>
+          We do not embed third-party analytics, ads, social widgets, or other tools that track you. We also do not
+          share data with third parties because—quite literally—we do not collect it in the first place.
+        </p>
+
+        <h2 className="text-xl font-semibold mt-8">Data Retention</h2>
+        <p>
+          There is no personal data to retain. We do not store any information about visitors.
+        </p>
+
+        <h2 className="text-xl font-semibold mt-8">Changes to This Policy</h2>
+        <p>
+          If we ever change this stance (we don’t plan to), we will update this page and clearly describe what would
+          change—before it takes effect.
+        </p>
+
+        <h2 className="text-xl font-semibold mt-8">Contact</h2>
+        <p>
+          Questions? Please contact us at <a className="underline" href="mailto:privacy@[your-domain]">privacy@[your-domain]</a>.
+        </p>
+      </section>
+    </main>
+  );
+}

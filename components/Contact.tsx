@@ -61,13 +61,13 @@ export default function Contact() {
     icon: EnvelopeIcon,
     title: 'Email',
     value: getCompanyInfo.contactEmail(),                    // ✅ correct name + call
-    href: 'mailto:${getCompanyInfo.contactEmail()}',         // ✅ proper template string
+    href: 'mailto:${getCompanyInfo.contactEmail()}`,         // ✅ proper template string
   },
   {
     icon: PhoneIcon,
     title: 'Phone',
     value: getCompanyInfo.contactPhone(),
-    href: 'tel:${getCompanyInfo.contactPhone()}',            // optionally strip spaces if needed
+    href: `tel:${getCompanyInfo.contactPhone()}`,            // optionally strip spaces if needed
   },
   {
     icon: MapPinIcon,

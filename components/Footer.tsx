@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { getCompanyInfo, companyConfig, legal } from '@/config/company' 
 
 const navigation = {
   services: [
@@ -14,8 +15,8 @@ const navigation = {
   company: [
     { name: 'About Us', href: '#about' },
     { name: 'Contact', href: '#contact' },
-    { name: 'Privacy Policy', href: '#' },
-    { name: 'Terms of Service', href: '#' },
+    { name: 'Privacy Policy', href: {legal.privacyPolicy} },
+    { name: 'Terms of Service', href: {legal.termsOfService} },
   ],
   industries: [
     { name: 'Offshore Logistics', href: '#' },
@@ -166,19 +167,19 @@ export default function Footer() {
             </p>
             <div className="flex items-center space-x-6 mt-4 md:mt-0">
               <a
-                href="#"
+                href={legal.privacyPolicy}
                 className="text-gray-400 hover:text-white transition-colors text-sm"
               >
                 Privacy Policy
               </a>
               <a
-                href="#"
+                href={legal.termsOfService}
                 className="text-gray-400 hover:text-white transition-colors text-sm"
               >
                 Terms of Service
               </a>
               <a
-                href="#"
+                href={legal.cookiePolicy}
                 className="text-gray-400 hover:text-white transition-colors text-sm"
               >
                 Cookie Policy

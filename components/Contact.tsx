@@ -60,7 +60,7 @@ export default function Contact() {
     {
       icon: EnvelopeIcon,
       title: 'Email',
-      value: getCompanyInfo.ContactEmail(),
+      value: {getCompanyInfo.ContactEmail()},
       href: 'mailto:contact@bonnevalsolutions.com'
     },
     {

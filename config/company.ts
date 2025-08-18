@@ -24,17 +24,17 @@ export const companyConfig = {
   // Basic Company Information
   name: isPreview ? 'Preview Bonneval Solutions' : 'Bonneval Solutions',
   fullName: isPreview ? 'Preview Bonneval Solutions SASU' : 'Bonneval Solutions SASU',
-  legalForm: 'SASU (Société par Actions Simplifiée Unipersonnelle)',
+  legalForm: 'EI (Entrepreuneur Individuel)',
   founded: '2024',
   industry: 'AI Automation & Process Optimization Consultancy',
   
   // Contact Information
   contact: {
-    email: 'contact@bonnevalsolutions.com',
-    phone: '+33 (0)1 XX XX XX XX',
-    phoneFormatted: '+33 1 XX XX XX XX',
+    email: 'casimir@bonnevalsolutions.com',
+    phone: '+33 (0) 6 09 55 83 96',
+    phoneFormatted: '+33 1 6 09 55 83 96',
     location: 'France (Remote & On-site)',
-    businessHours: 'Mon-Fri: 9:00 AM - 6:00 PM CET',
+    businessHours: '24/7 Time Zone Agnostic',
     timezone: 'CET (Central European Time)',
   },
   
@@ -71,8 +71,8 @@ export const companyConfig = {
   // Social Media & Online Presence
   social: {
     linkedin: 'https://linkedin.com/company/bonnevalsolutions',
-    twitter: 'https://twitter.com/bonnevalsolutions',
-    github: 'https://github.com/bonnevalsolutions',
+    twitter: 'Coming soon',
+    github: 'coming Soon',
     website: 'https://bonnevalsolutions.com'
   },
   

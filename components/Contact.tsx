@@ -10,8 +10,7 @@ import {
 } from '@heroicons/react/24/outline'
 import { getCompanyInfo, companyConfig } from '@/config/company' 
 
-const phone = getCompanyInfo.contactPhone()
-const phoneDigits = phone.replace(/[^\d]/g, '') // strip spaces/()/- for URLs
+
 
 
 export default function Contact() {
@@ -26,7 +25,8 @@ export default function Contact() {
 
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
-
+  const phone = getCompanyInfo.contactPhone()
+  const phoneDigits = phone.replace(/[^\d]/g, '') // strip spaces/()/- for URLs
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)

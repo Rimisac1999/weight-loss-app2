@@ -86,9 +86,9 @@ export const companyConfig = {
   // Legal & Compliance
   legal: {
     copyright: isPreview ? '© 2024 Preview Bonneval Solutions. All rights reserved.' : '© 2024 Bonneval Solutions. All rights reserved.',
-    privacyPolicy: '/privacy',
-    termsOfService: '/terms',
-    cookiePolicy: '/cookies'
+    privacyPolicy: '/PrivacyPolicy',
+    termsOfService: '/TermsOfService',
+    cookiePolicy: '/CookiePolicy'
   },
   
   // Branding & Messaging

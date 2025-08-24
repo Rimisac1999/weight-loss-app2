@@ -17,7 +17,7 @@ const steps = [
 
 export default function OnboardingPage() {
   const router = useRouter();
-  const { user } = useAuth();
+  const { user, loading: authLoading } = useAuth();
   const [currentStep, setCurrentStep] = useState(0);
   const [loading, setLoading] = useState(false);
 
@@ -39,9 +39,18 @@ export default function OnboardingPage() {
   });
 
   const onSubmit = async (data: ProfileCreateType) => {
-    if (!user) return;
+    console.log('Form submitted with data:', data);
     
+    if (!user) {
+      console.error('No user found');
+      alert('Please log in to continue');
+      router.push('/auth/login');
+      return;
+    }
+    
+    console.log('User ID:', user.id);
     setLoading(true);
+    
     try {
       const { error } = await supabase
         .from('profiles')
@@ -52,9 +61,10 @@ export default function OnboardingPage() {
 
       if (error) {
         console.error('Error creating profile:', error);
-        alert('Error creating profile. Please try again.');
+        alert(`Error creating profile: ${error.message}`);
         setLoading(false);
       } else {
+        console.log('Profile created successfully');
         // Redirect to dashboard after successful profile creation
         router.push('/dashboard');
       }
@@ -76,6 +86,24 @@ export default function OnboardingPage() {
       setCurrentStep(currentStep - 1);
     }
   };
+
+  // Show loading state while checking auth
+  if (authLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto"></div>
+          <p className="mt-4 text-gray-600">Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Redirect if no user
+  if (!authLoading && !user) {
+    router.push('/auth/login');
+    return null;
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
@@ -246,6 +274,7 @@ export default function OnboardingPage() {
                 type="submit"
                 disabled={loading}
                 className="px-4 py-2 text-sm font-medium text-white bg-primary-600 rounded-md hover:bg-primary-700 disabled:opacity-50"
+                onClick={() => console.log('Submit button clicked')}
               >
                 {loading ? 'Creating profile...' : 'Complete Setup'}
               </button>

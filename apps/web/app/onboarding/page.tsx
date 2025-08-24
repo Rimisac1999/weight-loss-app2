@@ -42,18 +42,26 @@ export default function OnboardingPage() {
     if (!user) return;
     
     setLoading(true);
-    const { error } = await supabase
-      .from('profiles')
-      .insert({
-        user_id: user.id,
-        ...data,
-      });
+    try {
+      const { error } = await supabase
+        .from('profiles')
+        .insert({
+          user_id: user.id,
+          ...data,
+        });
 
-    if (error) {
-      console.error('Error creating profile:', error);
+      if (error) {
+        console.error('Error creating profile:', error);
+        alert('Error creating profile. Please try again.');
+        setLoading(false);
+      } else {
+        // Redirect to dashboard after successful profile creation
+        router.push('/dashboard');
+      }
+    } catch (err) {
+      console.error('Unexpected error:', err);
+      alert('An unexpected error occurred. Please try again.');
       setLoading(false);
-    } else {
-      router.push('/dashboard');
     }
   };
 

@@ -30,7 +30,7 @@ export interface SyncQueueItem {
   recordId: string;
   data: any;
   timestamp: Date;
-  synced: boolean;
+  synced: number; // 0 = false, 1 = true
 }
 
 export const db = new Dexie('WeightTrackerDB') as LocalDB;

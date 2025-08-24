@@ -31,7 +31,7 @@ export class SyncManager {
 
     const pendingItems = await db.syncQueue
       .where('synced')
-      .equals(false)
+      .equals(0)
       .toArray();
 
     for (const item of pendingItems) {
@@ -64,7 +64,7 @@ export class SyncManager {
     }
 
     // Mark as synced
-    await db.syncQueue.update(item.id!, { synced: true });
+    await db.syncQueue.update(item.id!, { synced: 1 });
   }
 
   async addToSyncQueue(
@@ -79,7 +79,7 @@ export class SyncManager {
       recordId,
       data,
       timestamp: new Date(),
-      synced: false,
+      synced: 0,
     });
   }
 }

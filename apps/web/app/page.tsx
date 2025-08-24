@@ -50,7 +50,7 @@ export default function HomePage() {
             <div className="bg-white p-6 rounded-lg shadow-sm">
               <h3 className="font-semibold text-lg mb-2">💪 Offline First</h3>
               <p className="text-gray-600">
-                Works completely offline with seamless sync when you're back online.
+                Works completely offline with seamless sync when you&apos;re back online.
               </p>
             </div>
           </div>

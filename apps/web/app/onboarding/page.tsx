@@ -75,7 +75,7 @@ export default function OnboardingPage() {
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-gray-900">Welcome!</h1>
           <p className="mt-2 text-gray-600">
-            Let's set up your profile to get started
+            Let&apos;s set up your profile to get started
           </p>
         </div>
 

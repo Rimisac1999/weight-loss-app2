@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.AIMode = exports.AlcoholType = exports.MealSource = exports.Units = exports.ActivityLevel = exports.Sex = void 0;
+const zod_1 = require("zod");
+exports.Sex = zod_1.z.enum(['male', 'female']);
+exports.ActivityLevel = zod_1.z.enum(['sedentary', 'light', 'moderate', 'high', 'athlete']);
+exports.Units = zod_1.z.enum(['metric', 'imperial']);
+exports.MealSource = zod_1.z.enum(['manual', 'photo']);
+exports.AlcoholType = zod_1.z.enum(['beer_pint', 'wine_bottle', 'custom']);
+exports.AIMode = zod_1.z.enum(['hosted', 'byok']);

@@ -7,12 +7,10 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Weight Tracker',
-  description: 'Minimalist weight tracking PWA with AI-powered meal logging',
+  description: 'Track your weight, meals, and activities',
   manifest: '/manifest.json',
-  appleWebApp: {
-    capable: true,
-    statusBarStyle: 'default',
-    title: 'Weight Tracker',
+  icons: {
+    apple: '/icon-192x192.png',
   },
 };
 

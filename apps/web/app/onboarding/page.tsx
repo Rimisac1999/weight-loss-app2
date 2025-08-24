@@ -52,21 +52,32 @@ export default function OnboardingPage() {
     setLoading(true);
     
     try {
-      const { error } = await supabase
+      // Log the exact data being sent
+      const profileData = {
+        user_id: user.id,
+        ...data,
+      };
+      console.log('Inserting profile data:', profileData);
+      
+      const { data: insertedData, error } = await supabase
         .from('profiles')
-        .insert({
-          user_id: user.id,
-          ...data,
-        });
+        .insert(profileData)
+        .select()
+        .single();
 
       if (error) {
-        console.error('Error creating profile:', error);
-        alert(`Error creating profile: ${error.message}`);
+        console.error('Supabase error details:', error);
+        console.error('Error code:', error.code);
+        console.error('Error message:', error.message);
+        console.error('Error details:', error.details);
+        alert(`Error creating profile: ${error.message}\n\nDetails: ${JSON.stringify(error.details || error)}`);
         setLoading(false);
       } else {
-        console.log('Profile created successfully');
-        // Redirect to dashboard after successful profile creation
-        router.push('/dashboard');
+        console.log('Profile created successfully:', insertedData);
+        // Small delay to ensure the profile is saved
+        setTimeout(() => {
+          router.push('/dashboard');
+        }, 100);
       }
     } catch (err) {
       console.error('Unexpected error:', err);

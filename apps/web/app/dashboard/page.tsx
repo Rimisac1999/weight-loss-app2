@@ -122,7 +122,7 @@ export default function DashboardPage() {
                   <div className="mt-2 text-sm text-yellow-700">
                     <p>
                       Please check your email and click the confirmation link to access your dashboard. 
-                      If you haven't received the email, check your spam folder.
+                      If you haven&apos;t received the email, check your spam folder.
                     </p>
                   </div>
                 </div>
@@ -144,7 +144,7 @@ export default function DashboardPage() {
             <div className="mb-8">
               <h2 className="text-2xl font-bold text-gray-900">Welcome back!</h2>
               <p className="text-gray-600 mt-1">What would you like to track today?</p>
-            </div>t
+            </div>
 
             {/* Quick Actions Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
@@ -250,7 +250,7 @@ export default function DashboardPage() {
               </h3>
               <p className="text-gray-600 mb-6">
                 Please check your email and click the confirmation link to access your dashboard. 
-                Once confirmed, you'll be able to start tracking your weight loss journey.
+                Once confirmed, you&apos;ll be able to start tracking your weight loss journey.
               </p>
               <button
                 onClick={handleRefreshEmailStatus}

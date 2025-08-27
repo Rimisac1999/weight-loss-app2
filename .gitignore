@@ -5,6 +5,14 @@ node_modules
 # testing
 coverage
 
+# Windows Laptop files 
+
+node.bat
+npm.bat
+pnpm.bat
+run-node.bat
+turbo.bat
+setup-node.ps1
 # next.js
 .next/
 out/

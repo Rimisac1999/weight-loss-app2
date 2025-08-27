@@ -8,6 +8,7 @@ import { ProfileCreate } from '@weight-tracker/schemas';
 import type { ProfileCreate as ProfileCreateType } from '@weight-tracker/schemas';
 import { supabase } from '@/lib/supabase/client';
 import { useAuth } from '@/lib/hooks/useAuth';
+import { toSnakeCase } from '@/lib/utils/transformers';
 
 const steps = [
   { id: 'basics', title: 'Basic Information' },
@@ -32,7 +33,7 @@ export default function OnboardingPage() {
       sex: 'male',
       birthYear: new Date().getFullYear() - 30,
       heightCm: 175,
-      activityLevel: 'moderate',
+      activity_level: 'moderate',
       strideCm: 75,
       preferredUnits: 'metric',
     },
@@ -52,11 +53,16 @@ export default function OnboardingPage() {
     setLoading(true);
     
     try {
-      // Log the exact data being sent
-      const profileData = {
-        user_id: user.id,
-        ...data,
-      };
+      // Transform camelCase to snake_case for Supabase using utility function
+      const profileData = toSnakeCase({
+        userId: user.id,
+        sex: data.sex,
+        birthYear: data.birthYear,
+        heightCm: data.heightCm,
+        activityLevel: data.activityLevel,
+        strideCm: data.strideCm,
+        preferredUnits: data.preferredUnits,
+      }, 'profiles');
       console.log('Inserting profile data:', profileData);
       
       const { data: insertedData, error } = await supabase
@@ -246,12 +252,12 @@ export default function OnboardingPage() {
                     key={option.value}
                     className="flex items-start p-3 border rounded-lg cursor-pointer hover:bg-gray-50"
                   >
-                    <input
-                      type="radio"
-                      {...register('activityLevel')}
-                      value={option.value}
-                      className="mt-1 text-primary-600 focus:ring-primary-500"
-                    />
+                                    <input
+                  type="radio"
+                  {...register('activityLevel')}
+                  value={option.value}
+                  className="mt-1 text-primary-600 focus:ring-primary-500"
+                />
                     <div className="ml-3">
                       <div className="font-medium">{option.label}</div>
                       <div className="text-sm text-gray-500">{option.desc}</div>

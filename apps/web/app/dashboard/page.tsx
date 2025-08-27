@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabase/client';
 import { User } from '@supabase/supabase-js';
 import Link from 'next/link';
+import { toCamelCase } from '@/lib/utils/transformers';
 import { 
   ScaleIcon, 
   CameraIcon, 
@@ -35,6 +36,10 @@ export default function DashboardPage() {
         
         if (!profile) {
           router.push('/onboarding');
+        } else {
+          // Transform snake_case to camelCase for use with Zod schemas
+          const transformedProfile = toCamelCase(profile, 'profiles');
+          console.log('Transformed profile:', transformedProfile);
         }
       }
       setLoading(false);
@@ -124,36 +129,56 @@ export default function DashboardPage() {
               <p className="text-sm text-gray-600 mt-1">View your progress forecast</p>
             </div>
           </Link>
+
+          {/* Add Activity */}
+          <Link href="/activity/add" className="group">
+            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 hover:border-primary-300 hover:shadow-md transition-all">
+              <div className="flex items-center justify-between mb-4">
+                <div className="h-8 w-8 bg-primary-100 rounded-lg flex items-center justify-center">
+                  <span className="text-primary-600 font-bold text-sm">A</span>
+                </div>
+                <PlusIcon className="h-5 w-5 text-gray-400 group-hover:text-primary-600" />
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900">Log Activity</h3>
+              <p className="text-sm text-gray-600 mt-1">Track exercise and steps</p>
+            </div>
+          </Link>
+
+          {/* View History */}
+          <Link href="/history" className="group">
+            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 hover:border-primary-300 hover:shadow-md transition-all">
+              <div className="flex items-center justify-between mb-4">
+                <div className="h-8 w-8 bg-primary-100 rounded-lg flex items-center justify-center">
+                  <span className="text-primary-600 font-bold text-sm">H</span>
+                </div>
+                <ArrowRightIcon className="h-5 w-5 text-gray-400 group-hover:text-primary-600" />
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900">History</h3>
+              <p className="text-sm text-gray-600 mt-1">View your tracking history</p>
+            </div>
+          </Link>
+
+          {/* Settings */}
+          <Link href="/settings" className="group">
+            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 hover:border-primary-300 hover:shadow-md transition-all">
+              <div className="flex items-center justify-between mb-4">
+                <div className="h-8 w-8 bg-primary-100 rounded-lg flex items-center justify-center">
+                  <span className="text-primary-600 font-bold text-sm">⚙</span>
+                </div>
+                <ArrowRightIcon className="h-5 w-5 text-gray-400 group-hover:text-primary-600" />
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900">Settings</h3>
+              <p className="text-sm text-gray-600 mt-1">Configure your preferences</p>
+            </div>
+          </Link>
         </div>
 
-        {/* Today's Summary */}
+        {/* Recent Activity Section */}
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Today&apos;s Summary</h3>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-            <div className="text-center">
-              <p className="text-sm text-gray-600">Calories In</p>
-              <p className="text-2xl font-bold text-gray-900">0</p>
-            </div>
-            <div className="text-center">
-              <p className="text-sm text-gray-600">Calories Out</p>
-              <p className="text-2xl font-bold text-gray-900">0</p>
-            </div>
-            <div className="text-center">
-              <p className="text-sm text-gray-600">Net Calories</p>
-              <p className="text-2xl font-bold text-gray-900">0</p>
-            </div>
-            <div className="text-center">
-              <p className="text-sm text-gray-600">Weight</p>
-              <p className="text-2xl font-bold text-gray-900">--</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Recent Activity */}
-        <div className="mt-8">
           <h3 className="text-lg font-semibold text-gray-900 mb-4">Recent Activity</h3>
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <p className="text-gray-600 text-center py-8">No activity yet. Start by logging your weight or a meal!</p>
+          <div className="text-center text-gray-500 py-8">
+            <p>No recent activity to display</p>
+            <p className="text-sm mt-2">Start tracking to see your progress here</p>
           </div>
         </div>
       </main>

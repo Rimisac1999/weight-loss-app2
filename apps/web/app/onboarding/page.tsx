@@ -33,7 +33,7 @@ export default function OnboardingPage() {
       sex: 'male',
       birthYear: new Date().getFullYear() - 30,
       heightCm: 175,
-      activity_level: 'moderate',
+      activityLevel: 'moderate',
       strideCm: 75,
       preferredUnits: 'metric',
     },

@@ -53,7 +53,50 @@ export default function OnboardingPage() {
     setLoading(true);
     
     try {
-      // Transform camelCase to snake_case for Supabase using utility function
+      // Check if profile already exists
+      const { data: existingProfile, error: checkError } = await supabase
+        .from('profiles')
+        .select('id')
+        .eq('user_id', user.id)
+        .single();
+
+      if (checkError && checkError.code !== 'PGRST116') { // PGRST116 = no rows returned
+        console.error('Error checking existing profile:', checkError);
+        alert(`Error checking profile: ${checkError.message}`);
+        setLoading(false);
+        return;
+      }
+
+      if (existingProfile) {
+        console.log('Profile already exists, updating...');
+        // Update existing profile
+        const { data: updatedData, error: updateError } = await supabase
+          .from('profiles')
+          .update(toSnakeCase({
+            sex: data.sex,
+            birthYear: data.birthYear,
+            heightCm: data.heightCm,
+            activityLevel: data.activityLevel,
+            strideCm: data.strideCm,
+            preferredUnits: data.preferredUnits,
+          }, 'profiles'))
+          .eq('user_id', user.id)
+          .select()
+          .single();
+
+        if (updateError) {
+          console.error('Error updating profile:', updateError);
+          alert(`Error updating profile: ${updateError.message}`);
+          setLoading(false);
+          return;
+        }
+        
+        console.log('Profile updated successfully:', updatedData);
+        router.push('/dashboard');
+        return;
+      }
+
+      // Create new profile
       const profileData = toSnakeCase({
         userId: user.id,
         sex: data.sex,
@@ -63,6 +106,7 @@ export default function OnboardingPage() {
         strideCm: data.strideCm,
         preferredUnits: data.preferredUnits,
       }, 'profiles');
+      
       console.log('Inserting profile data:', profileData);
       
       const { data: insertedData, error } = await supabase
@@ -80,10 +124,7 @@ export default function OnboardingPage() {
         setLoading(false);
       } else {
         console.log('Profile created successfully:', insertedData);
-        // Small delay to ensure the profile is saved
-        setTimeout(() => {
-          router.push('/dashboard');
-        }, 100);
+        router.push('/dashboard');
       }
     } catch (err) {
       console.error('Unexpected error:', err);
@@ -287,14 +328,13 @@ export default function OnboardingPage() {
                 Next
               </button>
             ) : (
-              <button
-                type="submit"
-                disabled={loading}
-                className="px-4 py-2 text-sm font-medium text-white bg-primary-600 rounded-md hover:bg-primary-700 disabled:opacity-50"
-                onClick={() => console.log('Submit button clicked')}
-              >
-                {loading ? 'Creating profile...' : 'Complete Setup'}
-              </button>
+                             <button
+                 type="submit"
+                 disabled={loading}
+                 className="px-4 py-2 text-sm font-medium text-white bg-primary-600 rounded-md hover:bg-primary-700 disabled:opacity-50"
+               >
+                 {loading ? 'Creating profile...' : 'Complete Setup'}
+               </button>
             )}
           </div>
         </form>

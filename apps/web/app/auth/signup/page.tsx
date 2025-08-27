@@ -24,16 +24,36 @@ export default function SignupPage() {
       return;
     }
 
-    const { error } = await supabase.auth.signUp({
-      email,
-      password,
-    });
+    try {
+      console.log('Attempting to create account for:', email);
+      
+      const { data, error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          emailRedirectTo: `${window.location.origin}/auth/callback`
+        }
+      });
 
-    if (error) {
-      setError(error.message);
+      if (error) {
+        console.error('Signup error:', error);
+        setError(error.message);
+        setLoading(false);
+      } else {
+        console.log('Signup successful:', data);
+        if (data.user && !data.user.email_confirmed_at) {
+          // Email confirmation required
+          setError('Please check your email to confirm your account before signing in.');
+          setLoading(false);
+        } else {
+          // Account created and confirmed, redirect to onboarding
+          router.push('/onboarding');
+        }
+      }
+    } catch (err) {
+      console.error('Unexpected error during signup:', err);
+      setError('An unexpected error occurred. Please try again.');
       setLoading(false);
-    } else {
-      router.push('/onboarding');
     }
   };
 

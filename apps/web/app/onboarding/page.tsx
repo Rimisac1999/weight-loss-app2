@@ -335,6 +335,7 @@ export default function OnboardingPage() {
                >
                  {loading ? 'Creating profile...' : 'Complete Setup'}
                </button>
+               
             )}
           </div>
         </form>

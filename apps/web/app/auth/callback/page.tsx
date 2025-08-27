@@ -22,15 +22,15 @@ export default function AuthCallbackPage() {
           return;
         }
 
-        if (data.session) {
-          setStatus('success');
-          setMessage('Account confirmed successfully! Redirecting to onboarding...');
-          
-          // Wait a moment then redirect
-          setTimeout(() => {
-            router.push('/onboarding');
-          }, 2000);
-        } else {
+                  if (data.session) {
+            setStatus('success');
+            setMessage('Account confirmed successfully! Redirecting to dashboard...');
+            
+            // Wait a moment then redirect
+            setTimeout(() => {
+              router.push('/dashboard');
+            }, 2000);
+          } else {
           setStatus('error');
           setMessage('No active session found. Please try signing up again.');
         }

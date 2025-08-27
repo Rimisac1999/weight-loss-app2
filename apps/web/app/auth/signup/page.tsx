@@ -39,17 +39,17 @@ export default function SignupPage() {
         console.error('Signup error:', error);
         setError(error.message);
         setLoading(false);
-      } else {
-        console.log('Signup successful:', data);
-        if (data.user && !data.user.email_confirmed_at) {
-          // Email confirmation required
-          setError('Please check your email to confirm your account before signing in.');
-          setLoading(false);
-        } else {
-          // Account created and confirmed, redirect to onboarding
-          router.push('/onboarding');
+              } else {
+          console.log('Signup successful:', data);
+          if (data.user) {
+            // Account created successfully, redirect to onboarding immediately
+            // Email confirmation will be handled on the dashboard
+            router.push('/onboarding');
+          } else {
+            setError('Account creation failed. Please try again.');
+            setLoading(false);
+          }
         }
-      }
     } catch (err) {
       console.error('Unexpected error during signup:', err);
       setError('An unexpected error occurred. Please try again.');
